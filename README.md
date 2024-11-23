@@ -1,12 +1,20 @@
-# NestJS + Drizzle ORM + MySQL Template
+# NestJS Infrastructure Report
 
-### Architecture
+<details>
+  <summary>
+    <h2>Application Config</h2>
+  </summary>
+  <h3>Architecture</h3>
+  <ul>
+    <li>Clean Architecture</li>
+    <li>NestJS</li>
+    <li>Drizzle ORM</li>
+    <li>MySQL</li>
+  </ul>
+</details>
 
-Clean Architecture
+## Transaction
 
-### Application
+## Caching Strategy
 
-- Custom Logger extends NestJS Logger
-- Global Response
-- Global Exception
-- OpenAPI (Swagger)
+## Kafka
