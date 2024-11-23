@@ -12,6 +12,8 @@
 
 ## Transaction
 
+## Indexing
+
 ## Caching Strategy
 
 ## Kafka
