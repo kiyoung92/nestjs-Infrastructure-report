@@ -1,10 +1,7 @@
 # NestJS Infrastructure Report
 
 <details>
-  <summary>
-    <h2>Application Config</h2>
-  </summary>
-  <h3>Architecture</h3>
+  <summary><h2>Application Config</h2></summary>
   <ul>
     <li>Clean Architecture</li>
     <li>NestJS</li>
