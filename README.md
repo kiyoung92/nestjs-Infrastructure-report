@@ -146,6 +146,7 @@ sequenceDiagram
   Payment Service ->>+ Payment Repository: 상품 재고 차감
   Payment Service ->>+ Payment Repository: 상품 판매량 증가
   Payment Service ->>+ Payment Repository: 사용자 포인트 차감
+  Payment Service ->>+ Payment Repository: 주문 내역 생성
   Payment Service -->>- User: 결제에 대한 응답
 ```
 
