@@ -130,6 +130,13 @@ sequenceDiagram
   alt 재고 부족
     Payment Service -->> User: 결제 실패에 대한 응답
   end
+  Payment Service ->> Payment Repository: 주문 정보가 있는지 확인
+
+  alt 주문 정보 없음
+    Payment Repository -->> Payment Service: 주문 정보 없음
+    Payment Service -->> User: 결제 실패에 대한 응답
+  end
+
   Payment Service ->>+ Payment Repository: 결제 생성
   alt 결제 실패
     Payment Service ->> Payment Repository: 결제 정보 Rollback
