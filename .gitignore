@@ -48,3 +48,6 @@ prisma
 
 # env
 .env
+
+# erd
+.erd.json
