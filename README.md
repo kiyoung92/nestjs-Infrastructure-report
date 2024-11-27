@@ -223,6 +223,9 @@ products ||--o{ orders: orders
 ```
 
 ### `users`
+
+사용자 정보를 저장하는 테이블
+
 **Properties**
    - `id`: 사용자 고유 ID
    - `name`: 사용자 이름
@@ -231,6 +234,9 @@ products ||--o{ orders: orders
    - `deleted_at`: 사용자 삭제일
 
 ### `points`
+
+사용자의 잔여 포인트 정보를 저장하는 테이블
+
 **Properties**
    - `id`: 포인트 고유 ID
    - `user_id`: 사용자 고유 ID
@@ -238,6 +244,9 @@ products ||--o{ orders: orders
    - `updated_at`: 포인트 수정일
 
 ### `point_histories`
+
+사용자의 포인트 충전, 사용 내역을 저장하는 테이블
+
 **Properties**
   - `id`: 포인트 이력 고유 ID
   - `point_id`: 포인트 고유 ID
@@ -247,6 +256,9 @@ products ||--o{ orders: orders
   - `created_at`: 포인트 이력 생성일
 
 ### `orders`
+
+사용자의 주문 내역을 저장하는 테이블
+
 **Properties**
   - `id`: 주문 고유 ID
   - `user_id`: 사용자 고유 ID
@@ -257,6 +269,9 @@ products ||--o{ orders: orders
   - `created_at`: 주문 생성일
 
 ### `stores`
+
+상점 정보를 저장하는 테이블
+
 **Properties**
   - `id`: 상점 고유 ID
   - `name`: 상점 이름
@@ -265,6 +280,9 @@ products ||--o{ orders: orders
   - `deleted_at`: 상점 삭제일
 
 ### `products`
+
+상점의 상품 정보를 저장하는 테이블
+
 **Properties**
   - `id`: 상품 고유 ID
   - `store_id`: 상점 고유 ID
@@ -276,6 +294,9 @@ products ||--o{ orders: orders
   - `deleted_at`: 상품 삭제일
 
 ### `stock`
+
+상점의 상품 재고 정보를 저장하는 테이블
+
 **Properties**
   - `id`: 재고 고유 ID
   - `product_id`: 상품 고유 ID
