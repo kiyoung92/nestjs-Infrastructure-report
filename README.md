@@ -144,6 +144,136 @@ sequenceDiagram
 
 ## ERD
 
+```mermaid
+erDiagram
+"users" {
+  id INT PK
+  name VARCHAR(150) UK
+  created_at TIMESTAMP(3) 
+  updated_at TIMESTAMP(3)
+  deleted_at TIMESTAMP(3) "nullable"
+}
+
+"points" {
+  id INT PK
+  user_id INT FK
+  point INT
+  updated_at TIMESTAMP(3)
+}
+
+"point_histories" {
+  id INT PK
+  point_id INT FK
+  point INT
+  balance INT
+  use_type VARCHAR(6)
+  created_at TIMESTAMP(6)
+}
+
+"orders" {
+  id INT PK
+  user_id INT FK
+  product_id INT FK
+  product_name VARCHAR(150)
+  count INT
+  price INT
+  created_at TIMESTAMP(6)
+}
+
+"stores" {
+  id INT PK
+  name VARCHAR(50) UK
+  created_at TIMESTAMP(3)
+  updated_at TIMESTAMP(3)
+  deleted_at TIMESTAMP(3) "nullable"
+}
+
+"products" {
+  id INT PK
+  store_id INT FK
+  name VARCHAR(200)
+  price INT
+  sales_volumn INT
+  created_at TIMESTAMP(3)
+  updated_at TIMESTAMP(3)
+  deleted_at TIMESTAMP(3) "nullable"
+}
+
+"stock" {
+  id INT PK
+  product_id INT FK
+  stock INT
+  updated_at TIMESTAMP(3)
+}
+
+users ||--|| points: points
+points ||--o{ point_histories: point_histories
+users ||--o{ orders: orders
+stores ||--o{ products: products
+products ||--|| stock: stock
+products ||--o{ orders: orders
+```
+
+### `users`
+**Properties**
+   - `id`: 사용자 고유 ID
+   - `name`: 사용자 이름
+   - `created_at`: 사용자 생성일
+   - `updated_at`: 사용자 정보 수정일
+   - `deleted_at`: 사용자 삭제일
+
+### `points`
+**Properties**
+   - `id`: 포인트 고유 ID
+   - `user_id`: 사용자 고유 ID
+   - `point`: 사용자 포인트
+   - `updated_at`: 포인트 수정일
+
+### `point_histories`
+**Properties**
+  - `id`: 포인트 이력 고유 ID
+  - `point_id`: 포인트 고유 ID
+  - `point`: 포인트 변동량
+  - `balance`: 포인트 잔액
+  - `use_type`: 포인트 사용 타입
+  - `created_at`: 포인트 이력 생성일
+
+### `orders`
+**Properties**
+  - `id`: 주문 고유 ID
+  - `user_id`: 사용자 고유 ID
+  - `product_id`: 상품 고유 ID
+  - `product_name`: 상품 이름
+  - `count`: 상품 수량
+  - `price`: 상품 가격
+  - `created_at`: 주문 생성일
+
+### `stores`
+**Properties**
+  - `id`: 상점 고유 ID
+  - `name`: 상점 이름
+  - `created_at`: 상점 생성일
+  - `updated_at`: 상점 정보 수정일
+  - `deleted_at`: 상점 삭제일
+
+### `products`
+**Properties**
+  - `id`: 상품 고유 ID
+  - `store_id`: 상점 고유 ID
+  - `name`: 상품 이름
+  - `price`: 상품 가격
+  - `sales_volumn`: 상품 판매량
+  - `created_at`: 상품 생성일
+  - `updated_at`: 상품 정보 수정일
+  - `deleted_at`: 상품 삭제일
+
+### `stock`
+**Properties**
+  - `id`: 재고 고유 ID
+  - `product_id`: 상품 고유 ID
+  - `stock`: 상품 재고
+  - `updated_at`: 재고 수정일
+
 ## API
 
 ## Transaction
