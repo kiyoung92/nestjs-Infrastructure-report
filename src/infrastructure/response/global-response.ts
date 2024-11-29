@@ -1,13 +1,32 @@
-import { IGlobalResponse } from 'src/application/interfaces/global-response.interface';
+import { ApiProperty } from '@nestjs/swagger';
+import { Expose } from 'class-transformer';
 import {
-  GlobalResponseErrorParams,
-  GlobalResponseErrorReturnType,
   GlobalResponseSuccessParams,
   GlobalResponseSuccessReturnType,
 } from 'src/application/types/global-response.type';
 
-export const GlobalResponse: IGlobalResponse = Object.freeze({
-  success<ResponseDataType>({
+export class GlobalResponse<ResponseDataType> {
+  @ApiProperty()
+  @Expose()
+  status: 'success' | 'error';
+
+  @ApiProperty()
+  @Expose()
+  statusCode: number;
+
+  @ApiProperty()
+  @Expose()
+  message: string;
+
+  @ApiProperty()
+  @Expose()
+  data?: ResponseDataType;
+
+  @ApiProperty()
+  @Expose()
+  timestamp: string;
+
+  static success<ResponseDataType>({
     statusCode,
     message,
     data,
@@ -30,11 +49,15 @@ export const GlobalResponse: IGlobalResponse = Object.freeze({
       data,
       timestamp: responseTime,
     };
-  },
-  error({
+  }
+
+  static error({
     statusCode,
     message,
-  }: GlobalResponseErrorParams): GlobalResponseErrorReturnType {
+  }: {
+    statusCode: number;
+    message: string;
+  }) {
     const responseTime = new Date().toISOString();
 
     return {
@@ -43,5 +66,5 @@ export const GlobalResponse: IGlobalResponse = Object.freeze({
       message,
       timestamp: responseTime,
     };
-  },
-});
+  }
+}
