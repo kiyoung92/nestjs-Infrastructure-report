@@ -161,7 +161,11 @@ erDiagram
 "users" {
   id INT PK
   name VARCHAR(150) UK
+<<<<<<< HEAD
   created_at TIMESTAMP(3)
+=======
+  created_at TIMESTAMP(3) 
+>>>>>>> origin
   updated_at TIMESTAMP(3)
   deleted_at TIMESTAMP(3) "nullable"
 }
@@ -185,6 +189,7 @@ erDiagram
 "orders" {
   id INT PK
   user_id INT FK
+<<<<<<< HEAD
   is_payment BOOLEAN
   created_at TIMESTAMP(6)
 }
@@ -195,6 +200,13 @@ erDiagram
   product_id INT FK
   price INT
   count INT
+=======
+  product_id INT FK
+  product_name VARCHAR(150)
+  count INT
+  price INT
+  created_at TIMESTAMP(6)
+>>>>>>> origin
 }
 
 "stores" {
@@ -226,10 +238,16 @@ erDiagram
 users ||--|| points: points
 points ||--o{ point_histories: point_histories
 users ||--o{ orders: orders
+<<<<<<< HEAD
 products ||--o{ order_products: order_products
 orders ||--o{ order_products: order_products
 stores ||--o{ products: products
 products ||--|| stock: stock
+=======
+stores ||--o{ products: products
+products ||--|| stock: stock
+products ||--o{ orders: orders
+>>>>>>> origin
 ```
 
 ### `users`
@@ -237,29 +255,45 @@ products ||--|| stock: stock
 사용자 정보를 저장하는 테이블
 
 **Properties**
+<<<<<<< HEAD
 
 - `id`: 사용자 고유 ID
 - `name`: 사용자 이름
 - `created_at`: 사용자 생성일
 - `updated_at`: 사용자 정보 수정일
 - `deleted_at`: 사용자 삭제일
+=======
+   - `id`: 사용자 고유 ID
+   - `name`: 사용자 이름
+   - `created_at`: 사용자 생성일
+   - `updated_at`: 사용자 정보 수정일
+   - `deleted_at`: 사용자 삭제일
+>>>>>>> origin
 
 ### `points`
 
 사용자의 잔여 포인트 정보를 저장하는 테이블
 
 **Properties**
+<<<<<<< HEAD
 
 - `id`: 포인트 고유 ID
 - `user_id`: 사용자 고유 ID
 - `point`: 사용자 포인트
 - `updated_at`: 포인트 수정일
+=======
+   - `id`: 포인트 고유 ID
+   - `user_id`: 사용자 고유 ID
+   - `point`: 사용자 포인트
+   - `updated_at`: 포인트 수정일
+>>>>>>> origin
 
 ### `point_histories`
 
 사용자의 포인트 충전, 사용 내역을 저장하는 테이블
 
 **Properties**
+<<<<<<< HEAD
 
 - `id`: 포인트 이력 고유 ID
 - `point_id`: 포인트 고유 ID
@@ -267,12 +301,21 @@ products ||--|| stock: stock
 - `balance`: 포인트 잔액
 - `use_type`: 포인트 사용 타입
 - `created_at`: 포인트 이력 생성일
+=======
+  - `id`: 포인트 이력 고유 ID
+  - `point_id`: 포인트 고유 ID
+  - `point`: 포인트 변동량
+  - `balance`: 포인트 잔액
+  - `use_type`: 포인트 사용 타입
+  - `created_at`: 포인트 이력 생성일
+>>>>>>> origin
 
 ### `orders`
 
 사용자의 주문 내역을 저장하는 테이블
 
 **Properties**
+<<<<<<< HEAD
 
 - `id`: 주문 고유 ID
 - `user_id`: 사용자 고유 ID
@@ -281,24 +324,42 @@ products ||--|| stock: stock
 - `count`: 상품 수량
 - `price`: 상품 가격
 - `created_at`: 주문 생성일
+=======
+  - `id`: 주문 고유 ID
+  - `user_id`: 사용자 고유 ID
+  - `product_id`: 상품 고유 ID
+  - `product_name`: 상품 이름
+  - `count`: 상품 수량
+  - `price`: 상품 가격
+  - `created_at`: 주문 생성일
+>>>>>>> origin
 
 ### `stores`
 
 상점 정보를 저장하는 테이블
 
 **Properties**
+<<<<<<< HEAD
 
 - `id`: 상점 고유 ID
 - `name`: 상점 이름
 - `created_at`: 상점 생성일
 - `updated_at`: 상점 정보 수정일
 - `deleted_at`: 상점 삭제일
+=======
+  - `id`: 상점 고유 ID
+  - `name`: 상점 이름
+  - `created_at`: 상점 생성일
+  - `updated_at`: 상점 정보 수정일
+  - `deleted_at`: 상점 삭제일
+>>>>>>> origin
 
 ### `products`
 
 상점의 상품 정보를 저장하는 테이블
 
 **Properties**
+<<<<<<< HEAD
 
 - `id`: 상품 고유 ID
 - `store_id`: 상점 고유 ID
@@ -308,17 +369,34 @@ products ||--|| stock: stock
 - `created_at`: 상품 생성일
 - `updated_at`: 상품 정보 수정일
 - `deleted_at`: 상품 삭제일
+=======
+  - `id`: 상품 고유 ID
+  - `store_id`: 상점 고유 ID
+  - `name`: 상품 이름
+  - `price`: 상품 가격
+  - `sales_volumn`: 상품 판매량
+  - `created_at`: 상품 생성일
+  - `updated_at`: 상품 정보 수정일
+  - `deleted_at`: 상품 삭제일
+>>>>>>> origin
 
 ### `stock`
 
 상점의 상품 재고 정보를 저장하는 테이블
 
 **Properties**
+<<<<<<< HEAD
 
 - `id`: 재고 고유 ID
 - `product_id`: 상품 고유 ID
 - `stock`: 상품 재고
 - `updated_at`: 재고 수정일
+=======
+  - `id`: 재고 고유 ID
+  - `product_id`: 상품 고유 ID
+  - `stock`: 상품 재고
+  - `updated_at`: 재고 수정일
+>>>>>>> origin
 
 ## API
 
