@@ -322,6 +322,26 @@ products ||--|| stock: stock
 
 ## API
 
+1. `.env.sample`을 참고하여 `./environment/.env.development`에 환경변수를 설정합니다.
+
+```bash
+pnpm install
+
+pnpm dev
+```
+
+2. `http://localhost:{port}/api`에 접속하여 확인하실 수 있습니다.
+
+### API 목록
+
+- `/v1/order/create`: 주문 생성 API
+- `/v1/payment`: 결제 API
+- `/v1/payment/find-all`: 상품 전체 조회 API
+- `/v1/product/{id}`: 상품 상세 조회 API
+- `/v1/payment/top-sales`: 상품 판매랑 상위 5개 조회 API
+- `/v1/point/charge`: 포인트 충전 API
+- `/v1/point/{userId}`: 포인트 조회 API
+
 ## Transaction
 
 ## Indexing
