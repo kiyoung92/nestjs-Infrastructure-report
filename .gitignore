@@ -50,11 +50,7 @@ prisma
 .env
 
 # erd
-<<<<<<< HEAD
 .erd.json
 
 # http
 *.http
-=======
-.erd.json
->>>>>>> origin
