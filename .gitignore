@@ -51,3 +51,6 @@ prisma
 
 # erd
 .erd.json
+
+# http
+*.http
