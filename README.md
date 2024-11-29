@@ -164,7 +164,7 @@ erDiagram
 <<<<<<< HEAD
   created_at TIMESTAMP(3)
 =======
-  created_at TIMESTAMP(3) 
+  created_at TIMESTAMP(3)
 >>>>>>> origin
   updated_at TIMESTAMP(3)
   deleted_at TIMESTAMP(3) "nullable"
@@ -189,7 +189,6 @@ erDiagram
 "orders" {
   id INT PK
   user_id INT FK
-<<<<<<< HEAD
   is_payment BOOLEAN
   created_at TIMESTAMP(6)
 }
@@ -200,13 +199,6 @@ erDiagram
   product_id INT FK
   price INT
   count INT
-=======
-  product_id INT FK
-  product_name VARCHAR(150)
-  count INT
-  price INT
-  created_at TIMESTAMP(6)
->>>>>>> origin
 }
 
 "stores" {
@@ -261,14 +253,13 @@ products ||--o{ orders: orders
 - `name`: 사용자 이름
 - `created_at`: 사용자 생성일
 - `updated_at`: 사용자 정보 수정일
-- `deleted_at`: 사용자 삭제일
-=======
-   - `id`: 사용자 고유 ID
-   - `name`: 사용자 이름
-   - `created_at`: 사용자 생성일
-   - `updated_at`: 사용자 정보 수정일
-   - `deleted_at`: 사용자 삭제일
->>>>>>> origin
+- # `deleted_at`: 사용자 삭제일
+  - `id`: 사용자 고유 ID
+  - `name`: 사용자 이름
+  - `created_at`: 사용자 생성일
+  - `updated_at`: 사용자 정보 수정일
+  - `deleted_at`: 사용자 삭제일
+    > > > > > > > origin
 
 ### `points`
 
@@ -280,13 +271,12 @@ products ||--o{ orders: orders
 - `id`: 포인트 고유 ID
 - `user_id`: 사용자 고유 ID
 - `point`: 사용자 포인트
-- `updated_at`: 포인트 수정일
-=======
-   - `id`: 포인트 고유 ID
-   - `user_id`: 사용자 고유 ID
-   - `point`: 사용자 포인트
-   - `updated_at`: 포인트 수정일
->>>>>>> origin
+- # `updated_at`: 포인트 수정일
+  - `id`: 포인트 고유 ID
+  - `user_id`: 사용자 고유 ID
+  - `point`: 사용자 포인트
+  - `updated_at`: 포인트 수정일
+    > > > > > > > origin
 
 ### `point_histories`
 
@@ -300,15 +290,14 @@ products ||--o{ orders: orders
 - `point`: 포인트 변동량
 - `balance`: 포인트 잔액
 - `use_type`: 포인트 사용 타입
-- `created_at`: 포인트 이력 생성일
-=======
+- # `created_at`: 포인트 이력 생성일
   - `id`: 포인트 이력 고유 ID
   - `point_id`: 포인트 고유 ID
   - `point`: 포인트 변동량
   - `balance`: 포인트 잔액
   - `use_type`: 포인트 사용 타입
   - `created_at`: 포인트 이력 생성일
->>>>>>> origin
+    > > > > > > > origin
 
 ### `orders`
 
@@ -323,8 +312,7 @@ products ||--o{ orders: orders
 - `product_name`: 상품 이름
 - `count`: 상품 수량
 - `price`: 상품 가격
-- `created_at`: 주문 생성일
-=======
+- # `created_at`: 주문 생성일
   - `id`: 주문 고유 ID
   - `user_id`: 사용자 고유 ID
   - `product_id`: 상품 고유 ID
@@ -332,7 +320,7 @@ products ||--o{ orders: orders
   - `count`: 상품 수량
   - `price`: 상품 가격
   - `created_at`: 주문 생성일
->>>>>>> origin
+    > > > > > > > origin
 
 ### `stores`
 
@@ -345,14 +333,13 @@ products ||--o{ orders: orders
 - `name`: 상점 이름
 - `created_at`: 상점 생성일
 - `updated_at`: 상점 정보 수정일
-- `deleted_at`: 상점 삭제일
-=======
+- # `deleted_at`: 상점 삭제일
   - `id`: 상점 고유 ID
   - `name`: 상점 이름
   - `created_at`: 상점 생성일
   - `updated_at`: 상점 정보 수정일
   - `deleted_at`: 상점 삭제일
->>>>>>> origin
+    > > > > > > > origin
 
 ### `products`
 
@@ -368,8 +355,7 @@ products ||--o{ orders: orders
 - `sales_volumn`: 상품 판매량
 - `created_at`: 상품 생성일
 - `updated_at`: 상품 정보 수정일
-- `deleted_at`: 상품 삭제일
-=======
+- # `deleted_at`: 상품 삭제일
   - `id`: 상품 고유 ID
   - `store_id`: 상점 고유 ID
   - `name`: 상품 이름
@@ -378,7 +364,7 @@ products ||--o{ orders: orders
   - `created_at`: 상품 생성일
   - `updated_at`: 상품 정보 수정일
   - `deleted_at`: 상품 삭제일
->>>>>>> origin
+    > > > > > > > origin
 
 ### `stock`
 
@@ -390,13 +376,12 @@ products ||--o{ orders: orders
 - `id`: 재고 고유 ID
 - `product_id`: 상품 고유 ID
 - `stock`: 상품 재고
-- `updated_at`: 재고 수정일
-=======
+- # `updated_at`: 재고 수정일
   - `id`: 재고 고유 ID
   - `product_id`: 상품 고유 ID
   - `stock`: 상품 재고
   - `updated_at`: 재고 수정일
->>>>>>> origin
+    > > > > > > > origin
 
 ## API
 
