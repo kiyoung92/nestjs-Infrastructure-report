@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { ProductService } from 'src/domain/services/product.service';
+import { PointService } from 'src/domain/services/point.service';
 
 @Module({
-  providers: [ProductService],
-  exports: [ProductService],
+  providers: [PointService],
+  exports: [PointService],
 })
 export class DomainModule {}
