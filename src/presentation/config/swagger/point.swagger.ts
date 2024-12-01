@@ -1,7 +1,7 @@
 import { getSchemaPath } from '@nestjs/swagger';
-import { ISwaggerConfig } from 'src/application/interfaces/swagger-config.interface';
-import { GlobalResponse } from 'src/infrastructure/response/global-response';
+import { GlobalResponse } from 'src/application/config/response/global-response';
 import { PointResponseDto } from 'src/presentation/dtos/point/point-response.dto';
+import { ISwaggerConfig } from 'src/presentation/interface/swagger/swagger-config.interface';
 
 export const pointSwaggerConfig: ISwaggerConfig = {
   apiTags: 'Point',

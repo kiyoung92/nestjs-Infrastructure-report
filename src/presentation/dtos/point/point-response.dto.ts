@@ -1,17 +1,43 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Expose } from 'class-transformer';
+import { Exclude, Expose, plainToClass } from 'class-transformer';
+import { Point } from 'src/domain/entities/point.entity';
 
 export class PointResponseDto {
-  @ApiProperty()
-  @Expose()
-  point: number;
+  @Exclude()
+  private readonly _id: number;
+
+  @Exclude()
+  private readonly _userId: number;
+
+  @Exclude()
+  private readonly _point: number;
+
+  @Exclude()
+  private readonly _updatedAt: string;
+
+  constructor(data: Partial<Point>) {
+    Object.assign(this, plainToClass(Point, data));
+  }
+
+  @Exclude()
+  get id() {
+    return this._id;
+  }
+
+  @Exclude()
+  get userId() {
+    return this._userId;
+  }
 
   @ApiProperty()
   @Expose()
-  updatedAt: string;
+  get point() {
+    return this._point;
+  }
 
-  constructor(point: number, updatedAt: string) {
-    this.point = point;
-    this.updatedAt = updatedAt;
+  @ApiProperty()
+  @Expose()
+  get updatedAt() {
+    return this._updatedAt;
   }
 }
