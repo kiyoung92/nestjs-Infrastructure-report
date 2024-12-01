@@ -1,6 +1,6 @@
 import { ConsoleLogger, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { ICustomLoggerService } from 'src/application/interfaces/custom-logger.interface';
+import { ICustomLoggerService } from 'src/infrastructure/interfaces/custom-logger.interface';
 
 @Injectable()
 export class CustomLoggerService
@@ -33,7 +33,10 @@ export class CustomLoggerService
   }
   drizzle(message: any, ...optionalParams: [...any, string?]): void {
     if (this.configService.get('NODE_ENV') === 'development') {
-      super.log(`\x1b[34m[ORM] ${message}`, ...optionalParams);
+      super.log(`\x1b[34m[ORM] ${message}`);
+      if (optionalParams && optionalParams.length > 0) {
+        super.log(`\x1b[34m[PARAMS] ${optionalParams.toString()}`);
+      }
     }
   }
 }

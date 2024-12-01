@@ -8,9 +8,9 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Response } from 'express';
-import { AppConfigModule } from 'src/config/config.module';
-import { CustomLoggerService } from 'src/infrastructure/logger/custom-logger.service';
-import { GlobalResponse } from 'src/infrastructure/response/global-response';
+import { AppConfigModule } from 'src/application/config/config.module';
+import { CustomLoggerService } from 'src/application/config/logger/custom-logger.service';
+import { GlobalResponse } from 'src/application/config/response/global-response';
 
 import { GlobalExceptionFilter } from './global-exception.filter';
 

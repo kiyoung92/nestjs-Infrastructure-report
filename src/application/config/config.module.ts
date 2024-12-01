@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { joiConfig } from 'src/config/joi.config';
+import { joiConfig } from 'src/application/config/joi.config';
 
 @Module({
   imports: [

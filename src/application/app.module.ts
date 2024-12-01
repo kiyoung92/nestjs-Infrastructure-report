@@ -1,18 +1,12 @@
 import { Module } from '@nestjs/common';
 import { APP_FILTER } from '@nestjs/core';
-import { AppConfigModule } from 'src/config/config.module';
-import { DrizzleModule } from 'src/infrastructure/database/drizzle.module';
-import { GlobalExceptionFilter } from 'src/infrastructure/filter/global-exception.filter';
-import { CustomLoggerModule } from 'src/infrastructure/logger/custom-logger.module';
+import { AppConfigModule } from 'src/application/config/config.module';
+import { GlobalExceptionFilter } from 'src/application/config/filter/global-exception.filter';
+import { CustomLoggerModule } from 'src/application/config/logger/custom-logger.module';
 import { PresentationModule } from 'src/presentation/presentation.module';
 
 @Module({
-  imports: [
-    AppConfigModule,
-    CustomLoggerModule,
-    DrizzleModule,
-    PresentationModule,
-  ],
+  imports: [AppConfigModule, CustomLoggerModule, PresentationModule],
   controllers: [],
   providers: [
     {

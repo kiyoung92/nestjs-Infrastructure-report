@@ -1,5 +1,4 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Expose } from 'class-transformer';
 import {
   GlobalResponseSuccessParams,
   GlobalResponseSuccessReturnType,
@@ -7,26 +6,21 @@ import {
 
 export class GlobalResponse<ResponseDataType> {
   @ApiProperty()
-  @Expose()
   status: 'success' | 'error';
 
   @ApiProperty()
-  @Expose()
   statusCode: number;
 
   @ApiProperty()
-  @Expose()
   message: string;
 
   @ApiProperty()
-  @Expose()
   data?: ResponseDataType;
 
   @ApiProperty()
-  @Expose()
   timestamp: string;
 
-  static success<ResponseDataType>({
+  public static success<ResponseDataType>({
     statusCode,
     message,
     data,
@@ -51,7 +45,7 @@ export class GlobalResponse<ResponseDataType> {
     };
   }
 
-  static error({
+  public static error({
     statusCode,
     message,
   }: {

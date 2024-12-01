@@ -7,8 +7,8 @@ import {
 } from '@nestjs/common';
 import { instanceToPlain } from 'class-transformer';
 import { Response } from 'express';
-import { CustomLoggerService } from 'src/infrastructure/logger/custom-logger.service';
-import { GlobalResponse } from 'src/infrastructure/response/global-response';
+import { CustomLoggerService } from 'src/application/config/logger/custom-logger.service';
+import { GlobalResponse } from 'src/application/config/response/global-response';
 
 @Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
@@ -40,9 +40,13 @@ export class GlobalExceptionFilter implements ExceptionFilter {
         `[${request.method}] ${exceptionToPlain.status} ► ${request.url} | ${exceptionToPlain.message}`,
         'GlobalExceptionHandler',
       );
-
       responseData.statusCode = HttpStatus.BAD_REQUEST;
-      responseData.message = '잘못된 요청입니다.';
+
+      if (Array.isArray(exceptionToPlain.response.message)) {
+        responseData.message = exceptionToPlain.response.message[0];
+      } else {
+        responseData.message = exceptionToPlain.response.message;
+      }
     }
 
     if (status >= 500) {
