@@ -8,7 +8,7 @@ import {
 import {
   ISwaggerConfig,
   ISwaggerMethodConfig,
-} from 'src/application/interfaces/swagger-config.interface';
+} from 'src/presentation/interface/swagger/swagger-config.interface';
 
 export const SetSwagger = (config: ISwaggerConfig) => {
   return (
