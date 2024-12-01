@@ -2,7 +2,7 @@ import { Injectable, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Pool } from 'mysql2/promise';
 import * as mysql from 'mysql2/promise';
-import { CustomLoggerService } from 'src/infrastructure/logger/custom-logger.service';
+import { CustomLoggerService } from 'src/application/config/logger/custom-logger.service';
 
 @Injectable()
 export class Mysql2Service implements OnModuleInit {

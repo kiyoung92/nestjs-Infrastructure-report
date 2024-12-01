@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
+import { CustomLoggerModule } from 'src/application/config/logger/custom-logger.module';
 import { Mysql2Service } from 'src/infrastructure/database/mysql/mysql.service';
-import { CustomLoggerModule } from 'src/infrastructure/logger/custom-logger.module';
 
 @Module({
   imports: [CustomLoggerModule],

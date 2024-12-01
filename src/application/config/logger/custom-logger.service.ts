@@ -1,6 +1,6 @@
 import { ConsoleLogger, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { ICustomLoggerService } from 'src/infrastructure/interfaces/custom-logger.interface';
+import { ICustomLoggerService } from 'src/application/interfaces/custom-logger.interface';
 
 @Injectable()
 export class CustomLoggerService
