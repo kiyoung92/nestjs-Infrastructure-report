@@ -12,6 +12,7 @@ import { Point } from 'src/domain/entities/point.entity';
 import * as timestampModule from 'src/domain/utils/dayjs.util';
 import { PointController } from 'src/presentation/controllers/point.controller';
 import { PointResponseDto } from 'src/presentation/dtos/point/point-response.dto';
+import { serializationUtils } from 'src/presentation/utils/serialization.util';
 
 describe('PointController', () => {
   let pointController: PointController;
@@ -44,7 +45,10 @@ describe('PointController', () => {
       const controllerResponse = GlobalResponse.success({
         statusCode: 200,
         message: '포인트 조회에 성공하였습니다.',
-        data: new PointResponseDto(useCaseResponse),
+        data: serializationUtils.dto({
+          dto: PointResponseDto,
+          entity: useCaseResponse,
+        }),
       });
 
       const response = await pointController.get(1);
@@ -99,7 +103,10 @@ describe('PointController', () => {
       const controllerResponse = GlobalResponse.success({
         statusCode: 200,
         message: '포인트 충전에 성공하였습니다.',
-        data: new PointResponseDto(useCaseResponse),
+        data: serializationUtils.dto({
+          dto: PointResponseDto,
+          entity: useCaseResponse,
+        }),
       });
 
       const response = await pointController.charge({

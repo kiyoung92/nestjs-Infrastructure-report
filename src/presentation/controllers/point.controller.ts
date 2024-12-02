@@ -14,6 +14,7 @@ import { SetSwagger } from 'src/presentation/decorators/swagger.decorator';
 import { PointRequestDto } from 'src/presentation/dtos/point/point-request.dto';
 import { PointResponseDto } from 'src/presentation/dtos/point/point-response.dto';
 import { IPointCotroller } from 'src/presentation/interface/controllers/point-controller.interface';
+import { serializationUtils } from 'src/presentation/utils/serialization.util';
 
 @Controller('point')
 export class PointController implements IPointCotroller {
@@ -29,7 +30,10 @@ export class PointController implements IPointCotroller {
     return GlobalResponse.success({
       statusCode: 200,
       message: '포인트 조회에 성공하였습니다.',
-      data: new PointResponseDto(useCaseResponse),
+      data: serializationUtils.dto({
+        dto: PointResponseDto,
+        entity: useCaseResponse,
+      }),
     });
   }
 
@@ -44,7 +48,10 @@ export class PointController implements IPointCotroller {
     return GlobalResponse.success({
       statusCode: 200,
       message: '포인트 충전에 성공하였습니다.',
-      data: new PointResponseDto(useCaseResponse),
+      data: serializationUtils.dto({
+        dto: PointResponseDto,
+        entity: useCaseResponse,
+      }),
     });
   }
 }
