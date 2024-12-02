@@ -28,7 +28,7 @@ export class PointController implements IPointCotroller {
 
     return GlobalResponse.success({
       statusCode: 200,
-      message: '포인트 조회에 성공했습니다.',
+      message: '포인트 조회에 성공하였습니다.',
       data: new PointResponseDto(useCaseResponse),
     });
   }
@@ -43,7 +43,7 @@ export class PointController implements IPointCotroller {
 
     return GlobalResponse.success({
       statusCode: 200,
-      message: '포인트 충전에 성공했습니다.',
+      message: '포인트 충전에 성공하였습니다.',
       data: new PointResponseDto(useCaseResponse),
     });
   }
