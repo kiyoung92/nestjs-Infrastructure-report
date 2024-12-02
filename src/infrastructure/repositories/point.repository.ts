@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { eq } from 'drizzle-orm';
 import { Point } from 'src/domain/entities/point.entity';
-import { IPointRepository } from 'src/domain/interfaces/repositories/point.repository';
+import { IPointRepository } from 'src/domain/interfaces/repositories/point-repository.interface';
 import { DRIZZLE_PROVIDER } from 'src/infrastructure/database/constants/constants';
 import { point } from 'src/infrastructure/database/schemas/schema';
 import {

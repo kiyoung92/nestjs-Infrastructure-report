@@ -3,6 +3,7 @@ import { Point } from 'src/domain/entities/point.entity';
 import { PointService } from 'src/domain/services/point.service';
 import { TransactionManager } from 'src/infrastructure/managers/transaction.manager';
 import { PointRepository } from 'src/infrastructure/repositories/point.repository';
+import { PointHistoriesRepository } from 'src/infrastructure/repositories/point-history.repository';
 
 @Injectable()
 export class ChargePointUseCase {
@@ -10,6 +11,7 @@ export class ChargePointUseCase {
     private readonly pointService: PointService,
     private readonly pointRepository: PointRepository,
     private readonly transactionManager: TransactionManager,
+    private readonly pointHistoriesRepository: PointHistoriesRepository,
   ) {}
 
   async execute({
@@ -24,6 +26,11 @@ export class ChargePointUseCase {
       const pointEntity = this.pointService.charge(pointRows, point);
 
       await this.pointRepository.setPoint(pointEntity, tx);
+      await this.pointHistoriesRepository.createChargeHistory(
+        pointEntity,
+        point,
+        tx,
+      );
 
       return pointEntity;
     });

@@ -13,20 +13,13 @@ export class PointResponseDto {
   private readonly _point: number;
 
   @Exclude()
+  private readonly _balance: number;
+
+  @Exclude()
   private readonly _updatedAt: string;
 
   constructor(data: Partial<Point>) {
     Object.assign(this, plainToClass(Point, data));
-  }
-
-  @Exclude()
-  get id() {
-    return this._id;
-  }
-
-  @Exclude()
-  get userId() {
-    return this._userId;
   }
 
   @ApiProperty()

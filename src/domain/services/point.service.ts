@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Point } from 'src/domain/entities/point.entity';
-import { PointRepositoryReturnType } from 'src/domain/interfaces/repositories/point.repository';
+import { PointRepositoryReturnType } from 'src/domain/interfaces/repositories/point-repository.interface';
 import { IPointService } from 'src/domain/interfaces/services/point-service.interface';
 
 @Injectable()
