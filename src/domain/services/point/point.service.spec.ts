@@ -2,8 +2,8 @@ import { NotFoundException } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import { AppModule } from 'src/application/app.module';
 import { DomainModule } from 'src/domain/domain.module';
-import { Point } from 'src/domain/entities/point.entity';
-import { PointService } from 'src/domain/services/point.service';
+import { Point } from 'src/domain/entities/point/point.entity';
+import { PointService } from 'src/domain/services/point/point.service';
 import * as timestampModule from 'src/domain/utils/dayjs.util';
 
 describe('PointService', () => {
@@ -31,14 +31,16 @@ describe('PointService', () => {
           updatedAt: updatedAt,
         },
       ];
-      const result = new Point(
-        mockPoint[0].id,
-        mockPoint[0].userId,
-        mockPoint[0].point,
-        mockPoint[0].updatedAt,
-      );
+      const result = new Point({
+        id: mockPoint[0].id,
+        userId: mockPoint[0].userId,
+        point: mockPoint[0].point,
+        updatedAt: mockPoint[0].updatedAt,
+      });
 
-      const executeResult = pointService.findEntity(mockPoint);
+      const executeResult = pointService.findEntity({
+        pointRepositoryRows: mockPoint,
+      });
 
       expect(executeResult).toEqual(result);
       expect(executeResult.id).toBe(result.id);
@@ -49,7 +51,9 @@ describe('PointService', () => {
 
     it('포인트가 조회되지 않았을 때', () => {
       try {
-        pointService.findEntity([]);
+        pointService.findEntity({
+          pointRepositoryRows: [],
+        });
         fail('테스트 실패');
       } catch (error) {
         expect(error).toBeInstanceOf(NotFoundException);
@@ -69,16 +73,19 @@ describe('PointService', () => {
           updatedAt: updatedAt,
         },
       ];
-      const result = new Point(
-        mockPoint[0].id,
-        mockPoint[0].userId,
-        mockPoint[0].point,
-        mockPoint[0].updatedAt,
-      );
+      const result = new Point({
+        id: mockPoint[0].id,
+        userId: mockPoint[0].userId,
+        point: mockPoint[0].point,
+        updatedAt: mockPoint[0].updatedAt,
+      });
 
       result.chargePoint(point);
 
-      const executeResult = pointService.charge(mockPoint, point);
+      const executeResult = pointService.charge({
+        pointRepositoryRows: mockPoint,
+        point,
+      });
 
       expect(executeResult).toEqual(result);
       expect(executeResult.id).toBe(result.id);
@@ -89,7 +96,10 @@ describe('PointService', () => {
 
     it('포인트가 충전되지 않았을 때', () => {
       try {
-        pointService.charge([], 100);
+        pointService.charge({
+          pointRepositoryRows: [],
+          point: 100,
+        });
         fail('테스트 실패');
       } catch (error) {
         expect(error).toBeInstanceOf(NotFoundException);

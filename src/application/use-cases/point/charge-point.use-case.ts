@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { Point } from 'src/domain/entities/point.entity';
-import { PointService } from 'src/domain/services/point.service';
+import { ChargePointUseCaseParamsType } from 'src/application/use-cases/point/types/charge-point-use-case.type';
+import { Point } from 'src/domain/entities/point/point.entity';
+import { PointService } from 'src/domain/services/point/point.service';
 import { TransactionManager } from 'src/infrastructure/managers/transaction.manager';
-import { PointRepository } from 'src/infrastructure/repositories/point.repository';
-import { PointHistoriesRepository } from 'src/infrastructure/repositories/point-history.repository';
+import { PointRepository } from 'src/infrastructure/repositories/point/point.repository';
+import { PointHistoriesRepository } from 'src/infrastructure/repositories/point/point-history.repository';
 
 @Injectable()
 export class ChargePointUseCase {
@@ -17,20 +18,23 @@ export class ChargePointUseCase {
   async execute({
     userId,
     point,
-  }: {
-    userId: number;
-    point: number;
-  }): Promise<Point> {
+  }: ChargePointUseCaseParamsType): Promise<Point> {
     return await this.transactionManager.transaction(async (tx) => {
-      const pointRows = await this.pointRepository.find(userId, tx);
-      const pointEntity = this.pointService.charge(pointRows, point);
+      const pointRepositoryRows = await this.pointRepository.find({
+        userId,
+        tx,
+      });
+      const pointEntity = this.pointService.charge({
+        pointRepositoryRows,
+        point,
+      });
 
-      await this.pointRepository.setPoint(pointEntity, tx);
-      await this.pointHistoriesRepository.createChargeHistory(
+      await this.pointRepository.setPoint({ pointEntity, tx });
+      await this.pointHistoriesRepository.createChargeHistory({
         pointEntity,
         point,
         tx,
-      );
+      });
 
       return pointEntity;
     });

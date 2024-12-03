@@ -19,8 +19,8 @@ import { serializationUtils } from 'src/presentation/utils/serialization.util';
 @Controller('point')
 export class PointController implements IPointCotroller {
   constructor(
-    private readonly chargePointUseCase: ChargePointUseCase,
     private readonly getPointUseCase: GetPointUseCase,
+    private readonly chargePointUseCase: ChargePointUseCase,
   ) {}
   @SetSwagger(pointSwaggerConfig)
   @Get(':userId')

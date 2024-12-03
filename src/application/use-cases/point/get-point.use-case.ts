@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { Point } from 'src/domain/entities/point.entity';
-import { PointService } from 'src/domain/services/point.service';
-import { PointRepository } from 'src/infrastructure/repositories/point.repository';
+import { GetPointUseCaseParamsType } from 'src/application/use-cases/point/types/get-point-use-case.type';
+import { Point } from 'src/domain/entities/point/point.entity';
+import { PointService } from 'src/domain/services/point/point.service';
+import { PointRepository } from 'src/infrastructure/repositories/point/point.repository';
 
 @Injectable()
 export class GetPointUseCase {
@@ -9,9 +10,9 @@ export class GetPointUseCase {
     private readonly pointService: PointService,
     private readonly pointRepository: PointRepository,
   ) {}
-  async execute({ userId }: { userId: number }): Promise<Point> {
-    const pointEntities = await this.pointRepository.find(userId);
+  async execute({ userId }: GetPointUseCaseParamsType): Promise<Point> {
+    const pointRepositoryRows = await this.pointRepository.find({ userId });
 
-    return this.pointService.findEntity(pointEntities);
+    return this.pointService.findEntity({ pointRepositoryRows });
   }
 }

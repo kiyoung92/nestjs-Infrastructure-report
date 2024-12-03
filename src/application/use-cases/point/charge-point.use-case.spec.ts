@@ -6,7 +6,7 @@ import { Test } from '@nestjs/testing';
 import { AppModule } from 'src/application/app.module';
 import { ChargePointUseCase } from 'src/application/use-cases/point/charge-point.use-case';
 import { UseCaseModule } from 'src/application/use-cases/use-case.module';
-import { Point } from 'src/domain/entities/point.entity';
+import { Point } from 'src/domain/entities/point/point.entity';
 import { TransactionManager } from 'src/infrastructure/managers/transaction.manager';
 
 describe('ChargePointUseCase', () => {
@@ -34,12 +34,12 @@ describe('ChargePointUseCase', () => {
         updatedAt: '2021-01-01 00:00:00.111',
       },
     ];
-    const result = new Point(
-      mockPoint[0].id,
-      mockPoint[0].userId,
-      mockPoint[0].point,
-      mockPoint[0].updatedAt,
-    );
+    const result = new Point({
+      id: mockPoint[0].id,
+      userId: mockPoint[0].userId,
+      point: mockPoint[0].point,
+      updatedAt: mockPoint[0].updatedAt,
+    });
 
     jest
       .spyOn(transactionManager, 'transaction')

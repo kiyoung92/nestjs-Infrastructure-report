@@ -3,7 +3,7 @@ import {
   GlobalResponseErrorReturnType,
   GlobalResponseSuccessParams,
   GlobalResponseSuccessReturnType,
-} from 'src/application/types/global-response.type';
+} from 'src/application/interfaces/types/global-response.type';
 
 export interface IGlobalResponse {
   readonly success: <ResponseDataType>(

@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import {
   GlobalResponseSuccessParams,
   GlobalResponseSuccessReturnType,
-} from 'src/application/types/global-response.type';
+} from 'src/application/interfaces/types/global-response.type';
 
 export class GlobalResponse<ResponseDataType> {
   @ApiProperty()

@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { PointService } from 'src/domain/services/point.service';
+import { PointService } from 'src/domain/services/point/point.service';
 
 @Module({
   providers: [PointService],

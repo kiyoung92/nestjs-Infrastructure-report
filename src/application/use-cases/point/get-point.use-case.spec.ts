@@ -6,9 +6,9 @@ import { Test } from '@nestjs/testing';
 import { AppModule } from 'src/application/app.module';
 import { GetPointUseCase } from 'src/application/use-cases/point/get-point.use-case';
 import { UseCaseModule } from 'src/application/use-cases/use-case.module';
-import { Point } from 'src/domain/entities/point.entity';
-import { PointService } from 'src/domain/services/point.service';
-import { PointRepository } from 'src/infrastructure/repositories/point.repository';
+import { Point } from 'src/domain/entities/point/point.entity';
+import { PointService } from 'src/domain/services/point/point.service';
+import { PointRepository } from 'src/infrastructure/repositories/point/point.repository';
 
 describe('GetPointUseCase', () => {
   let getPointUseCase: GetPointUseCase;
@@ -36,12 +36,12 @@ describe('GetPointUseCase', () => {
         updatedAt: '2021-01-01 00:00:00.111',
       },
     ];
-    const result = new Point(
-      mockPoint[0].id,
-      mockPoint[0].userId,
-      mockPoint[0].point,
-      mockPoint[0].updatedAt,
-    );
+    const result = new Point({
+      id: mockPoint[0].id,
+      userId: mockPoint[0].userId,
+      point: mockPoint[0].point,
+      updatedAt: mockPoint[0].updatedAt,
+    });
     jest.spyOn(pointRepository, 'find').mockResolvedValueOnce(mockPoint);
     jest.spyOn(pointService, 'findEntity').mockReturnValueOnce(result);
 
@@ -54,9 +54,11 @@ describe('GetPointUseCase', () => {
     expect(executeResult.updatedAt).toBe(result.updatedAt);
 
     expect(pointRepository.find).toHaveBeenCalledTimes(1);
-    expect(pointRepository.find).toHaveBeenCalledWith(userId);
+    expect(pointRepository.find).toHaveBeenCalledWith({ userId });
     expect(pointService.findEntity).toHaveBeenCalledTimes(1);
-    expect(pointService.findEntity).toHaveBeenCalledWith(mockPoint);
+    expect(pointService.findEntity).toHaveBeenCalledWith({
+      pointRepositoryRows: mockPoint,
+    });
   });
 
   it('포인트가 조회되지 않았을 때', async () => {
@@ -73,7 +75,7 @@ describe('GetPointUseCase', () => {
       expect(error).toBeInstanceOf(NotFoundException);
       expect(error.message).toBe('사용자를 찾을 수 없습니다.');
       expect(pointRepository.find).toHaveBeenCalledTimes(1);
-      expect(pointRepository.find).toHaveBeenCalledWith(userId);
+      expect(pointRepository.find).toHaveBeenCalledWith({ userId });
       expect(pointService.findEntity).toHaveBeenCalledTimes(1);
     }
   });
@@ -96,7 +98,7 @@ describe('GetPointUseCase', () => {
       expect(error).toBeInstanceOf(InternalServerErrorException);
       expect(error.message).toBe('포인트 조회 중 오류가 발생했습니다.');
       expect(pointRepository.find).toHaveBeenCalledTimes(1);
-      expect(pointRepository.find).toHaveBeenCalledWith(userId);
+      expect(pointRepository.find).toHaveBeenCalledWith({ userId });
       expect(pointService.findEntity).toHaveBeenCalledTimes(0);
     }
   });

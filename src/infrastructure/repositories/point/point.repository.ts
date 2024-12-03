@@ -4,14 +4,14 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { eq } from 'drizzle-orm';
-import { Point } from 'src/domain/entities/point.entity';
-import { IPointRepository } from 'src/domain/interfaces/repositories/point-repository.interface';
+import { IPointRepository } from 'src/domain/interfaces/repositories/point/point-repository.interface';
+import {
+  PointRepositoryFindParamsType,
+  PointRepositorySetPointParamsType,
+} from 'src/domain/interfaces/repositories/point/types/point-repository.type';
 import { DRIZZLE_PROVIDER } from 'src/infrastructure/database/constants/constants';
 import { point } from 'src/infrastructure/database/schemas/schema';
-import {
-  DrizzleORM,
-  DrizzleTransaction,
-} from 'src/infrastructure/database/types/drizzle';
+import { DrizzleORM } from 'src/infrastructure/database/types/drizzle';
 
 @Injectable()
 export class PointRepository implements IPointRepository {
@@ -20,7 +20,7 @@ export class PointRepository implements IPointRepository {
     readonly drizzle: DrizzleORM,
   ) {}
 
-  async find(userId: number, tx?: DrizzleTransaction) {
+  async find({ userId, tx }: PointRepositoryFindParamsType) {
     try {
       const rows = await (tx || this.drizzle)
         .select()
@@ -35,7 +35,7 @@ export class PointRepository implements IPointRepository {
     }
   }
 
-  async setPoint(pointEntity: Point, tx?: DrizzleTransaction) {
+  async setPoint({ pointEntity, tx }: PointRepositorySetPointParamsType) {
     try {
       await (tx || this.drizzle)
         .update(point)

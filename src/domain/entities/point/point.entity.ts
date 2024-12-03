@@ -1,3 +1,4 @@
+import { PointEntityContructorParamsType } from 'src/domain/entities/point/types/point-entity.type';
 import { getTimestamp } from 'src/domain/utils/dayjs.util';
 
 export class Point {
@@ -6,7 +7,12 @@ export class Point {
   private _point: number;
   private _updatedAt: string;
 
-  constructor(id: number, userId: number, point: number, updatedAt: string) {
+  constructor({
+    id,
+    userId,
+    point,
+    updatedAt,
+  }: PointEntityContructorParamsType) {
     this._id = id;
     this._userId = userId;
     this._point = point;

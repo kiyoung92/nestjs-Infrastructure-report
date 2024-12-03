@@ -8,9 +8,9 @@ import { GlobalResponse } from 'src/application/config/response/global-response'
 import { ChargePointUseCase } from 'src/application/use-cases/point/charge-point.use-case';
 import { GetPointUseCase } from 'src/application/use-cases/point/get-point.use-case';
 import { UseCaseModule } from 'src/application/use-cases/use-case.module';
-import { Point } from 'src/domain/entities/point.entity';
+import { Point } from 'src/domain/entities/point/point.entity';
 import * as timestampModule from 'src/domain/utils/dayjs.util';
-import { PointController } from 'src/presentation/controllers/point.controller';
+import { PointController } from 'src/presentation/controllers/point/point.controller';
 import { PointResponseDto } from 'src/presentation/dtos/point/point-response.dto';
 import { serializationUtils } from 'src/presentation/utils/serialization.util';
 
@@ -37,7 +37,12 @@ describe('PointController', () => {
 
   describe('GetPoint', () => {
     it('포인트가 정상으로 조회되었을 때', async () => {
-      const useCaseResponse = new Point(1, 1, 100, updatedAt);
+      const useCaseResponse = new Point({
+        id: 1,
+        userId: 1,
+        point: 100,
+        updatedAt: updatedAt,
+      });
       jest
         .spyOn(getPointUseCase, 'execute')
         .mockResolvedValueOnce(useCaseResponse);
@@ -95,7 +100,12 @@ describe('PointController', () => {
 
   describe('ChargePoint', () => {
     it('포인트가 정상으로 충전되었을 때', async () => {
-      const useCaseResponse = new Point(1, 1, 100, updatedAt);
+      const useCaseResponse = new Point({
+        id: 1,
+        userId: 1,
+        point: 100,
+        updatedAt: updatedAt,
+      });
       jest
         .spyOn(chargePointUseCase, 'execute')
         .mockResolvedValueOnce(useCaseResponse);
