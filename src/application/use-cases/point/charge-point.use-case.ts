@@ -25,8 +25,8 @@ export class ChargePointUseCase {
         tx,
       });
       const pointEntity = this.pointService.charge({
-        pointRepositoryRows,
         point,
+        pointRepositoryRows,
       });
 
       await this.pointRepository.setPoint({ pointEntity, tx });
