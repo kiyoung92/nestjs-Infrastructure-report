@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { UseCaseModule } from 'src/application/use-cases/use-case.module';
-import { PointController } from 'src/presentation/controllers/point/point.controller';
-import { ProductController } from 'src/presentation/controllers/product/product.controller';
+import { ApplicationModule } from 'src/application/application.module';
+import { PointController } from 'src/presentation/point/controllers/point.controller';
+import { ProductController } from 'src/presentation/product/controllers/product.controller';
 
 @Module({
-  imports: [UseCaseModule],
+  imports: [ApplicationModule],
   controllers: [PointController, ProductController],
 })
 export class PresentationModule {}
