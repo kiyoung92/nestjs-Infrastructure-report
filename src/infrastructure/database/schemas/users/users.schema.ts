@@ -5,17 +5,15 @@ import {
   mysqlTable,
   primaryKey,
   timestamp,
-  unique,
   varchar,
 } from 'drizzle-orm/mysql-core';
+import { orders } from 'src/infrastructure/database/schemas/schema';
 
 export const users = mysqlTable(
   'users',
   {
     id: int().autoincrement().notNull(),
-    name: varchar({ length: 150 }).notNull(),
-    phoneNumber: varchar('phone_number', { length: 15 }).notNull(),
-    email: varchar({ length: 255 }).notNull(),
+    name: varchar({ length: 150 }),
     createdAt: timestamp('created_at', { fsp: 3, mode: 'string' }).notNull(),
     updatedAt: timestamp('updated_at', { fsp: 3, mode: 'string' }).notNull(),
     deletedAt: timestamp('deleted_at', { fsp: 3, mode: 'string' }),
@@ -23,42 +21,67 @@ export const users = mysqlTable(
   (table) => {
     return {
       usersId: primaryKey({ columns: [table.id], name: 'users_id' }),
-      phoneNumber: unique('phone_number').on(table.phoneNumber),
-      email: unique('email').on(table.email),
     };
   },
 );
 
 export const usersRelations = relations(users, ({ many }) => ({
-  userHistories: many(userHistories),
+  orders: many(orders),
+  points: many(point),
 }));
 
-export const userHistories = mysqlTable(
-  'user_histories',
+export const point = mysqlTable(
+  'point',
   {
     id: int().autoincrement().notNull(),
     userId: int('user_id')
       .notNull()
       .references(() => users.id),
-    name: varchar({ length: 150 }),
-    phoneNumber: varchar('phone_number', { length: 15 }),
-    email: varchar({ length: 255 }),
-    createdAt: timestamp('created_at', { fsp: 3, mode: 'string' }).notNull(),
+    point: int().notNull(),
+    updatedAt: timestamp('updated_at', { fsp: 3, mode: 'string' }).notNull(),
   },
   (table) => {
     return {
       userId: index('user_id').on(table.userId),
-      userHistoriesId: primaryKey({
+      pointId: primaryKey({ columns: [table.id], name: 'point_id' }),
+    };
+  },
+);
+
+export const pointRelations = relations(point, ({ one, many }) => ({
+  user: one(users, {
+    fields: [point.userId],
+    references: [users.id],
+  }),
+  pointHistories: many(pointHistories),
+}));
+
+export const pointHistories = mysqlTable(
+  'point_histories',
+  {
+    id: int().autoincrement().notNull(),
+    pointId: int('point_id').notNull(),
+    point: int()
+      .notNull()
+      .references(() => point.id),
+    balance: int().notNull(),
+    useType: varchar('use_type', { length: 6 }).notNull(),
+    createdAt: timestamp('created_at', { fsp: 3, mode: 'string' }).notNull(),
+  },
+  (table) => {
+    return {
+      point: index('point').on(table.point),
+      pointHistoriesId: primaryKey({
         columns: [table.id],
-        name: 'user_histories_id',
+        name: 'point_histories_id',
       }),
     };
   },
 );
 
-export const userHistoriesRelations = relations(userHistories, ({ one }) => ({
-  user: one(users, {
-    fields: [userHistories.userId],
-    references: [users.id],
+export const pointHistoriesRelations = relations(pointHistories, ({ one }) => ({
+  point: one(point, {
+    fields: [pointHistories.point],
+    references: [point.id],
   }),
 }));

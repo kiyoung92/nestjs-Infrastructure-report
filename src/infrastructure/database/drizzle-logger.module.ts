@@ -1,10 +1,9 @@
 import { Module } from '@nestjs/common';
+import { CustomLoggerService } from 'src/common/global-config/logger/custom-logger.service';
 import { DrizzleLoggerService } from 'src/infrastructure/database/drizzle-logger.service';
-import { CustomLoggerModule } from 'src/infrastructure/logger/custom-logger.module';
 
 @Module({
-  imports: [CustomLoggerModule],
-  providers: [DrizzleLoggerService],
+  providers: [DrizzleLoggerService, CustomLoggerService],
   exports: [DrizzleLoggerService],
 })
 export class DrizzleLoggerModule {}
