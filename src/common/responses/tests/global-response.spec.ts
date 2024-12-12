@@ -1,4 +1,4 @@
-import { GlobalResponse } from 'src/application/app-config/global-response/global-response';
+import { GlobalResponse } from 'src/common/responses/global-response';
 
 describe('GlobalResponse', () => {
   type SuccessReturnDateType = {

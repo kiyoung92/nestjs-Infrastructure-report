@@ -5,7 +5,7 @@ import {
 } from 'class-transformer';
 
 export interface serializationUtils {
-  dto: <DtoType, ResponseEntity>({
+  entityToDto: <DtoType, ResponseEntity>({
     dto,
     entity,
     options,
@@ -19,7 +19,7 @@ type serializationDtoParams<DtoType, ResponseEntity> = {
 };
 
 export const serializationUtils: serializationUtils = Object.freeze({
-  dto: <DtoType, ResponseEntity>({
+  entityToDto: <DtoType, ResponseEntity>({
     dto,
     entity,
     options,

@@ -8,9 +8,8 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Response } from 'express';
-import { GlobalResponse } from 'src/application/app-config/global-response/global-response';
-import { AppConfigModule } from 'src/application/config/config.module';
 import { CustomLoggerService } from 'src/common/global-config/logger/custom-logger.service';
+import { GlobalResponse } from 'src/common/responses/global-response';
 
 import { GlobalExceptionFilter } from '../global-exception-filter/global-exception.filter';
 
@@ -21,7 +20,6 @@ describe('GlobalExceptionFilter', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [AppConfigModule],
       providers: [
         ConfigService,
         GlobalExceptionFilter,
