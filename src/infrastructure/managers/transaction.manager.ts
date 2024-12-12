@@ -6,7 +6,7 @@ import {
 } from 'src/infrastructure/database/types/drizzle';
 
 @Injectable()
-export class TransactionManager {
+export class RepositoryManager {
   constructor(
     @Inject(DRIZZLE_PROVIDER)
     readonly drizzle: DrizzleORM,

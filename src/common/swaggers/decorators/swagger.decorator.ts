@@ -10,7 +10,7 @@ import {
   ISwaggerMethodConfig,
 } from 'src/common/swaggers/interfaces/swagger-config.interface';
 
-export const SetSwagger = (config: ISwaggerConfig) => {
+export const SetOpenAPI = (config: ISwaggerConfig) => {
   return (
     target: any,
     propertyKey: string | symbol,
