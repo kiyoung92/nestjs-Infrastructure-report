@@ -189,7 +189,7 @@ erDiagram
   created_at TIMESTAMP(6)
 }
 
-"order_products" {
+"orders_products" {
   id INT PK
   order_id INT FK
   product_id INT FK
@@ -226,8 +226,8 @@ erDiagram
 users ||--|| points: points
 points ||--o{ point_histories: point_histories
 users ||--o{ orders: orders
-products ||--o{ order_products: order_products
-orders ||--o{ order_products: order_products
+products ||--o{ orders_products: orders_products
+orders ||--o{ orders_products: orders_products
 stores ||--o{ products: products
 products ||--|| stock: stock
 ```
@@ -281,6 +281,16 @@ products ||--|| stock: stock
 - `count`: 상품 수량
 - `price`: 상품 가격
 - `created_at`: 주문 생성일
+
+### `orders_products`
+
+**Properties**
+
+- `id`: 주문 상품 고유 ID
+- `order_id`: 주문 고유 ID
+- `product_id`: 상품 고유 ID
+- `price`: 상품 단가
+- `count`: 상품 수량
 
 ### `stores`
 
