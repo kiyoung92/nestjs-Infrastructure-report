@@ -7,7 +7,7 @@ dotenv.config({
 
 export default defineConfig({
   dialect: 'mysql',
-  schema: './src/infrastructure/database/schemas/**/**.schema.ts',
+  schema: './src/**/infrastructure/schemas/*.schema.ts',
   dbCredentials: {
     host: process.env.DATABASE_HOST,
     user: process.env.DATABASE_USER,
