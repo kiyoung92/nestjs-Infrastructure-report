@@ -2,7 +2,7 @@ import { ApiOperationOptions, ApiResponseOptions } from '@nestjs/swagger';
 
 export interface ISwaggerMethodConfig {
   apiOperation: ApiOperationOptions;
-  apiResponse: ApiResponseOptions;
+  apiResponse: ApiResponseOptions[];
   apiExtraModels?: any[];
 }
 

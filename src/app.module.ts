@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { CommonModule } from 'src/common/common.module';
-import { PresentationModule } from 'src/presentation/presentation.module';
+import { PointPresentationModule } from 'src/points/presentation/point-presentation.module';
 
 @Module({
-  imports: [CommonModule, PresentationModule],
+  imports: [CommonModule, PointPresentationModule],
   controllers: [],
   providers: [],
 })
