@@ -32,7 +32,8 @@
     "test:cov": "NODE_ENV=development jest --coverage",
     "test:debug": "NODE_ENV=development node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "NODE_ENV=development jest --config ./test/jest-e2e.json",
-    "test:point-unit": "NODE_ENV=development jest --testPathPattern='src/points/.*\\.unit\\.spec\\.ts$' --verbose"
+    "test:point-unit": "NODE_ENV=development jest --testPathPattern='src/points/.*\\.unit\\.spec\\.ts$' --verbose",
+    "test:point-e2e": "NODE_ENV=development jest --testPathPattern='src/points/.*\\.e2e\\.spec\\.ts$' --verbose"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
