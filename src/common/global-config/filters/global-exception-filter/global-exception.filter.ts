@@ -41,13 +41,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
         'GlobalExceptionHandler',
       );
       responseData.statusCode = HttpStatus.BAD_REQUEST;
-      if (Array.isArray(exceptionToPlain.response.message)) {
-        responseData.message = exceptionToPlain.response.message[0];
-      } else if (exceptionToPlain.response.message.includes('Validation')) {
-        responseData.message = '잘못된 요청입니다.';
-      } else {
-        responseData.message = exceptionToPlain.response.message;
-      }
+      responseData.message = '잘못된 요청입니다.';
     }
 
     if (status >= 500) {
