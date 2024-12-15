@@ -26,11 +26,13 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "======================test======================": "",
     "test": "NODE_ENV=development jest --verbose",
     "test:watch": "NODE_ENV=development jest --watch",
     "test:cov": "NODE_ENV=development jest --coverage",
     "test:debug": "NODE_ENV=development node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "NODE_ENV=development jest --config ./test/jest-e2e.json"
+    "test:e2e": "NODE_ENV=development jest --config ./test/jest-e2e.json",
+    "test:point-unit": "NODE_ENV=development jest --testPathPattern='src/points/.*\\.unit\\.spec\\.ts$' --verbose"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",

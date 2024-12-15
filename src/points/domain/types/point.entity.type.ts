@@ -4,3 +4,7 @@ export type PointEntityConstructorParams = {
   point: number;
   updatedAt: string;
 };
+
+export type PointEntitySetPointParams = {
+  point: number;
+};

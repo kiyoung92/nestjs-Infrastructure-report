@@ -5,8 +5,7 @@ import {
   MySql2PreparedQueryHKT,
   MySql2QueryResultHKT,
 } from 'drizzle-orm/mysql2';
-
-import * as schema from '../schemas/schemas';
+import * as schema from 'src/database/schemas/schemas';
 
 export type DrizzleORM = MySql2Database<typeof schema>;
 export type DrizzleTransaction = MySqlTransaction<
