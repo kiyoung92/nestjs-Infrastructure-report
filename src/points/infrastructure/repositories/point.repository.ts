@@ -4,6 +4,7 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { eq } from 'drizzle-orm';
+import { getTimestamp } from 'src/common/utils/dayjs.util';
 import { DRIZZLE_PROVIDER } from 'src/database/constants/constants';
 import { points } from 'src/database/schemas/schemas';
 import { DrizzleORM } from 'src/database/types/drizzle';
@@ -41,10 +42,13 @@ export class PointRepository implements IPointRepository {
 
   async charge({ userId, point, tx }: PointRepositoryChargeParams) {
     try {
+      const updatedTimestamp = getTimestamp();
+
       await (tx || this.drizzle)
         .update(points)
         .set({
           point,
+          updatedAt: updatedTimestamp,
         })
         .where(eq(points.userId, userId));
     } catch (error) {
