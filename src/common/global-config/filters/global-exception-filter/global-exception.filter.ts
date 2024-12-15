@@ -51,8 +51,12 @@ export class GlobalExceptionFilter implements ExceptionFilter {
         'GlobalExceptionHandler',
       );
 
+      if (exceptionToPlain.message) {
+        responseData.message = exceptionToPlain.message;
+      } else {
+        responseData.message = '일시적인 오류가 발생하였습니다.';
+      }
       responseData.statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
-      responseData.message = '일시적인 오류가 발생하였습니다.';
     }
 
     if (exception.constructor.name === 'JsonWebTokenError') {
