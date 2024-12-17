@@ -168,7 +168,7 @@ describe('PointService', () => {
         jest
           .spyOn(pointRepositoriy, 'findOne')
           .mockRejectedValueOnce(
-            new InternalServerErrorException('조회 중 오류가 발생했습니다.'),
+            new InternalServerErrorException('일시적인 오류가 발생하였습니다.'),
           );
 
         try {
@@ -176,7 +176,7 @@ describe('PointService', () => {
           fail('테스트 실패');
         } catch (error) {
           expect(error).toBeInstanceOf(InternalServerErrorException);
-          expect(error.message).toBe('조회 중 오류가 발생했습니다.');
+          expect(error.message).toBe('일시적인 오류가 발생하였습니다.');
         }
       });
     });

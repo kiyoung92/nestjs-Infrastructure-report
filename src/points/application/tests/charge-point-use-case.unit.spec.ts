@@ -88,9 +88,7 @@ describe('ChargePointUseCase', () => {
       jest
         .spyOn(pointService, 'charge')
         .mockRejectedValueOnce(
-          new InternalServerErrorException(
-            '포인트 충전 중 오류가 발생하였습니다.',
-          ),
+          new InternalServerErrorException('일시적인 오류가 발생하였습니다.'),
         );
 
       try {
@@ -98,7 +96,7 @@ describe('ChargePointUseCase', () => {
         fail('테스트 실패');
       } catch (error) {
         expect(error).toBeInstanceOf(InternalServerErrorException);
-        expect(error.message).toEqual('포인트 충전 중 오류가 발생하였습니다.');
+        expect(error.message).toEqual('일시적인 오류가 발생하였습니다.');
       }
     });
   });
