@@ -122,9 +122,7 @@ describe('Points', () => {
         jest
           .spyOn(pointRepository, 'findOne')
           .mockRejectedValueOnce(
-            new InternalServerErrorException(
-              '포인트 조회 중 오류가 발생하였습니다.',
-            ),
+            new InternalServerErrorException('일시적인 오류가 발생하였습니다.'),
           );
         return await request(app.getHttpServer())
           .get('/v1/point/1')
@@ -132,7 +130,7 @@ describe('Points', () => {
           .expect({
             status: 'error',
             statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
-            message: '포인트 조회 중 오류가 발생하였습니다.',
+            message: '일시적인 오류가 발생하였습니다.',
             timestamp: serverTimestamp,
           });
       });
