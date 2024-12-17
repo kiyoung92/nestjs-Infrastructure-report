@@ -32,7 +32,7 @@ describe('GetPointUseCase', () => {
       const serviceMockResult = new PointEntity({
         id: 1,
         userId: 1,
-        point: 100,
+        balance: 100,
         updatedAt: '11',
       });
 

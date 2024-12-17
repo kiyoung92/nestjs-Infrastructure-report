@@ -36,7 +36,7 @@ describe('ChargePointUseCase', () => {
       const serviceMockResult = new PointEntity({
         id: 1,
         userId,
-        point,
+        balance: point,
         updatedAt: '11',
       });
 

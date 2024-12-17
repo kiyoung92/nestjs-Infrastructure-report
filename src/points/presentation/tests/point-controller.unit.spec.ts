@@ -45,7 +45,7 @@ describe('PointController', () => {
         const entity = new PointEntity({
           id: 1,
           userId: 1,
-          point: 100,
+          balance: 100,
           updatedAt: '11',
         });
         const mockResult = GlobalResponse.success({
@@ -88,7 +88,7 @@ describe('PointController', () => {
         const pointEntity = new PointEntity({
           id: 1,
           userId: 1,
-          point: 100,
+          balance: 100,
           updatedAt: '11',
         });
 

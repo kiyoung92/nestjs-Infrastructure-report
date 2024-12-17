@@ -55,11 +55,11 @@ describe('PointService', () => {
         const repositoryMockValue = new PointEntity({
           id: 1,
           userId: 1,
-          point: 100,
+          balance: 100,
           updatedAt: '11',
         });
         jest
-          .spyOn(pointRepositoriy, 'get')
+          .spyOn(pointRepositoriy, 'findOne')
           .mockResolvedValueOnce(repositoryMockValue);
 
         const result = await pointService.get({ userId: 1 });
@@ -71,7 +71,7 @@ describe('PointService', () => {
 
     describe('실패', () => {
       it('실패: 사용자 정보 없음', async () => {
-        jest.spyOn(pointRepositoriy, 'get').mockResolvedValueOnce(null);
+        jest.spyOn(pointRepositoriy, 'findOne').mockResolvedValueOnce(null);
 
         try {
           await pointService.get({ userId: 1 });
@@ -84,7 +84,7 @@ describe('PointService', () => {
 
       it('실패: 데이터베이스 오류', async () => {
         jest
-          .spyOn(pointRepositoriy, 'get')
+          .spyOn(pointRepositoriy, 'findOne')
           .mockRejectedValueOnce(
             new InternalServerErrorException('조회 중 오류가 발생했습니다.'),
           );
@@ -114,25 +114,25 @@ describe('PointService', () => {
         const repositoryGetMockResult = new PointEntity({
           id: 1,
           userId: 1,
-          point: 100,
+          balance: 100,
           updatedAt: '11',
         });
 
         jest
-          .spyOn(pointRepositoriy, 'get')
+          .spyOn(pointRepositoriy, 'findOne')
           .mockResolvedValueOnce(repositoryGetMockResult);
-        jest.spyOn(pointRepositoriy, 'charge').mockResolvedValueOnce();
+        jest.spyOn(pointRepositoriy, 'setPoint').mockResolvedValueOnce();
 
         const result = await pointService.charge({ userId, point });
 
         expect(result).toBeInstanceOf(PointEntity);
-        expect(result.point).toBe(300);
+        expect(result.balance).toBe(300);
       });
     });
 
     describe('실패', () => {
       it('실패: 사용자 정보 없음', async () => {
-        jest.spyOn(pointRepositoriy, 'get').mockResolvedValueOnce(null);
+        jest.spyOn(pointRepositoriy, 'findOne').mockResolvedValueOnce(null);
 
         try {
           await pointService.charge({ userId, point });
@@ -147,12 +147,12 @@ describe('PointService', () => {
         const pointRepositoryGetMockResult = new PointEntity({
           id: 1,
           userId: 1,
-          point: MAX_POINT - 100,
+          balance: MAX_POINT - 100,
           updatedAt: '11',
         });
 
         jest
-          .spyOn(pointRepositoriy, 'get')
+          .spyOn(pointRepositoriy, 'findOne')
           .mockResolvedValueOnce(pointRepositoryGetMockResult);
 
         try {
@@ -166,7 +166,7 @@ describe('PointService', () => {
 
       it('실패: 데이터베이스 오류', async () => {
         jest
-          .spyOn(pointRepositoriy, 'get')
+          .spyOn(pointRepositoriy, 'findOne')
           .mockRejectedValueOnce(
             new InternalServerErrorException('조회 중 오류가 발생했습니다.'),
           );
