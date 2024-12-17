@@ -1,0 +1,2 @@
+export const DRIZZLE_PROVIDER = Symbol('DRIZZLE_PROVIDER');
+export const REPOSITORY_MANAGER = Symbol('REPOSITORY_MANAGER');

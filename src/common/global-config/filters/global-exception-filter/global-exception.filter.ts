@@ -41,12 +41,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
         'GlobalExceptionHandler',
       );
       responseData.statusCode = HttpStatus.BAD_REQUEST;
-
-      if (Array.isArray(exceptionToPlain.response.message)) {
-        responseData.message = exceptionToPlain.response.message[0];
-      } else {
-        responseData.message = exceptionToPlain.response.message;
-      }
+      responseData.message = '잘못된 요청입니다.';
     }
 
     if (status >= 500) {
@@ -56,8 +51,12 @@ export class GlobalExceptionFilter implements ExceptionFilter {
         'GlobalExceptionHandler',
       );
 
+      if (exceptionToPlain.message) {
+        responseData.message = exceptionToPlain.message;
+      } else {
+        responseData.message = '일시적인 오류가 발생하였습니다.';
+      }
       responseData.statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
-      responseData.message = '일시적인 오류가 발생하였습니다.';
     }
 
     if (exception.constructor.name === 'JsonWebTokenError') {

@@ -23,12 +23,21 @@ export const SetOpenAPI = (config: ISwaggerConfig) => {
       throw new Error(`Swagger config not found for method: ${methodName}`);
     }
 
-    applyDecorators(
+    const apiResponses = Array.isArray(methodConfig.apiResponse)
+      ? methodConfig.apiResponse
+      : [methodConfig.apiResponse];
+
+    const decorators = [
       ApiTags(config.apiTags),
       ApiOperation(methodConfig.apiOperation),
-      ApiResponse(methodConfig.apiResponse),
-      ApiExtraModels(...methodConfig.apiExtraModels),
-    )(target, propertyKey, descriptor);
+      ...apiResponses.map((response) => ApiResponse(response)),
+    ];
+
+    if (methodConfig.apiExtraModels && methodConfig.apiExtraModels.length > 0) {
+      decorators.push(ApiExtraModels(...methodConfig.apiExtraModels));
+    }
+
+    applyDecorators(...decorators)(target, propertyKey, descriptor);
 
     return descriptor;
   };
