@@ -5,6 +5,16 @@ import {
 } from 'src/points/domain/types/point.repository.type';
 
 export interface IPointRepository {
-  get({ userId, tx }: PointRepositoryGetParams): Promise<PointEntity | null>;
-  charge({ userId, point, tx }: PointRepositoryChargeParams): Promise<void>;
+  findOne({
+    userId,
+    tx,
+  }: PointRepositoryGetParams): Promise<PointEntity | null>;
+  setPoint({
+    userId,
+    pointId,
+    point,
+    balance,
+    useType,
+    tx,
+  }: PointRepositoryChargeParams): Promise<void>;
 }

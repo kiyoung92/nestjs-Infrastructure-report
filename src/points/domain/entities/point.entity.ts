@@ -8,20 +8,25 @@ import {
 export class PointEntity {
   id: number;
   userId: number;
-  point: number;
+  balance: number;
   updatedAt: string;
 
-  constructor({ id, userId, point, updatedAt }: PointEntityConstructorParams) {
+  constructor({
+    id,
+    userId,
+    balance,
+    updatedAt,
+  }: PointEntityConstructorParams) {
     this.id = id;
     this.userId = userId;
-    this.point = point;
+    this.balance = balance;
     this.updatedAt = updatedAt;
   }
 
   chagePoint({ point }: PointEntitySetPointParams): void {
-    this.point += point;
+    this.balance += point;
 
-    if (MAX_POINT < this.point) {
+    if (MAX_POINT < this.balance) {
       throw new UnprocessableEntityException(
         '포인트가 최대치를 초과하였습니다.',
       );

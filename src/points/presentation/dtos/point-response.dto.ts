@@ -10,7 +10,7 @@ export class PointResponseDto {
 
   @ApiProperty()
   @Expose()
-  point: number;
+  balance: number;
 
   @ApiProperty()
   @Expose()

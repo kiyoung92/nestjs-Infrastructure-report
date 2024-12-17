@@ -1,7 +1,7 @@
 export type PointEntityConstructorParams = {
   id: number;
   userId: number;
-  point: number;
+  balance: number;
   updatedAt: string;
 };
 

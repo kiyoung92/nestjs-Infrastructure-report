@@ -16,7 +16,7 @@ export const points = mysqlTable(
     userId: int('user_id')
       .notNull()
       .references(() => users.id),
-    point: int().notNull(),
+    balance: int().notNull(),
     updatedAt: timestamp('updated_at', { fsp: 3, mode: 'string' }).notNull(),
   },
   (table) => {

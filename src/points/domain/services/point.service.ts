@@ -19,7 +19,7 @@ export class PointService {
   ) {}
 
   async get({ userId }: PointServiceGetParams): Promise<PointEntity> {
-    const pointEntity = await this.pointRepository.get({ userId });
+    const pointEntity = await this.pointRepository.findOne({ userId });
 
     if (!pointEntity) {
       throw new NotFoundException('사용자 정보가 없습니다.');
@@ -33,16 +33,19 @@ export class PointService {
     point,
   }: ChargePointServiceParams): Promise<PointEntity> {
     return await this.repositoryManager.transaction(async (tx) => {
-      const pointEntity = await this.pointRepository.get({ userId, tx });
+      const pointEntity = await this.pointRepository.findOne({ userId, tx });
 
       if (!pointEntity) {
         throw new NotFoundException('사용자 정보가 없습니다.');
       }
 
       pointEntity.chagePoint({ point });
-      await this.pointRepository.charge({
+      await this.pointRepository.setPoint({
         userId,
-        point: pointEntity.point,
+        pointId: pointEntity.id,
+        point,
+        balance: pointEntity.balance,
+        useType: 'charge',
         tx,
       });
 

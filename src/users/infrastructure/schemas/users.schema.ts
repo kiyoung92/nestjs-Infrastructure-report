@@ -12,7 +12,7 @@ export const users = mysqlTable(
   'users',
   {
     id: int().autoincrement().notNull(),
-    name: varchar({ length: 150 }),
+    name: varchar({ length: 150 }).notNull(),
     createdAt: timestamp('created_at', { fsp: 3, mode: 'string' }).notNull(),
     updatedAt: timestamp('updated_at', { fsp: 3, mode: 'string' }).notNull(),
     deletedAt: timestamp('deleted_at', { fsp: 3, mode: 'string' }),

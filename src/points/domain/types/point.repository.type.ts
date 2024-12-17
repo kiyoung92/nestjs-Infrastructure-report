@@ -7,6 +7,9 @@ export type PointRepositoryGetParams = {
 
 export type PointRepositoryChargeParams = {
   userId: number;
+  pointId: number;
   point: number;
+  balance: number;
+  useType: 'charge' | 'use';
   tx?: DrizzleTransaction;
 };
