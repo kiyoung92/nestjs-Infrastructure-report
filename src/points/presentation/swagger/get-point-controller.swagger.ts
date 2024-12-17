@@ -1,7 +1,7 @@
 import { getSchemaPath } from '@nestjs/swagger';
 import { GlobalResponse } from 'src/common/responses/global-response';
 import { ISwaggerMethodConfig } from 'src/common/swaggers/interfaces/swagger-config.interface';
-import { getTimestamp } from 'src/common/utils/dayjs.util';
+import { dayjsUtil } from 'src/common/utils/dayjs.util';
 import { PointResponseDto } from 'src/points/presentation/dtos/point-response.dto';
 
 export const getPointControllerSwaggerConfig: ISwaggerMethodConfig = {
@@ -44,7 +44,7 @@ export const getPointControllerSwaggerConfig: ISwaggerMethodConfig = {
                 properties: {
                   updatedAt: {
                     type: 'string',
-                    example: getTimestamp(),
+                    example: dayjsUtil.getTimestamp(),
                     description: '포인트 업데이트 시간',
                   },
                 },
