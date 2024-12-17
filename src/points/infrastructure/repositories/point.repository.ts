@@ -40,9 +40,7 @@ export class PointRepository implements IPointRepository {
           })
         : null;
     } catch (error) {
-      throw new InternalServerErrorException(
-        '포인트 조회 중 오류가 발생하였습니다.',
-      );
+      throw new InternalServerErrorException('일시적인 오류가 발생하였습니다.');
     }
   }
 
@@ -72,9 +70,7 @@ export class PointRepository implements IPointRepository {
         createdAt: updatedTimestamp,
       });
     } catch (error) {
-      throw new InternalServerErrorException(
-        '포인트 충전 중 오류가 발생하였습니다.',
-      );
+      throw new InternalServerErrorException('일시적인 오류가 발생하였습니다.');
     }
   }
 }
